@@ -6780,6 +6780,9 @@ type UnstableCreateElicitationForm struct {
 	// A human-readable message describing what input is needed.
 	Message string `json:"message"`
 	Mode    string `json:"mode"`
+	// The session this elicitation is tied to. Zed (post zed#60749) scopes
+	// elicitations by sessionId; omit for request-scoped elicitations.
+	SessionId SessionId `json:"sessionId,omitempty"`
 	// A JSON Schema describing the form fields to present to the user.
 	RequestedSchema UnstableElicitationSchema `json:"requestedSchema"`
 }
@@ -6797,6 +6800,9 @@ type UnstableCreateElicitationUrl struct {
 	// A human-readable message describing what input is needed.
 	Message string `json:"message"`
 	Mode    string `json:"mode"`
+	// The session this elicitation is tied to (optional; URL elicitations may
+	// be request-scoped instead).
+	SessionId SessionId `json:"sessionId,omitempty"`
 	// The URL to direct the user to.
 	Url string `json:"url"`
 }
